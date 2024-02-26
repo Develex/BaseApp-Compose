@@ -18,6 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.develex.baseapp.navigation.BottomNavigationBar
 import com.example.compose.AppTheme
 
 // Dataclass for keeping track if the app is in darkmode
@@ -46,9 +47,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colorScheme.background
                     ) {
-                        Card {
-
-                        }
+                        BottomNavigationBar()
                     }
                 }
             }
