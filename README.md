@@ -4,4 +4,4 @@ This Base has the following features:
 * BottomNavigation
 * Toggleble DarkMode
 * 3 Screens (Can be added to or removed from)
-==========================================================
+
