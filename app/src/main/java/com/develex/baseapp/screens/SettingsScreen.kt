@@ -14,6 +14,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -23,8 +24,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.develex.baseapp.DarkTheme
@@ -35,9 +39,8 @@ import com.develex.baseapp.R
 import com.example.compose.AppTheme
 
 @Composable
-fun SettingsScreen(navController: NavController) {
+fun SettingsScreen(navController: NavController, vm: MainViewModel) {
 
-    val vm: MainViewModel = viewModel()
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -57,11 +60,19 @@ fun SettingsScreen(navController: NavController) {
                     .padding(horizontal = 15.dp, vertical = 10.dp)
                     .clip(MaterialTheme.shapes.large)
             ) {
-                Button(onClick = {
+//                Column {
+//                    Button(onClick = {
+//                        vm.setThemeUserSetting(MainViewModel.AppThemeEnum.MODE_NIGHT)
+//                    }) {
+//                        Text(text = "Night Mode")
+//                    }
+//                    Button(onClick = {
+//                        vm.setThemeUserSetting(MainViewModel.AppThemeEnum.MODE_DAY)
+//                    }) {
+//                        Text(text = "Day Mode")
+//                    }
+//                }
 
-                }) {
-                    Text(text = "Night Mode")
-                }
             }
         }
     }

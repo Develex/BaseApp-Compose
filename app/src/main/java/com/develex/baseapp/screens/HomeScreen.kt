@@ -27,7 +27,7 @@ import com.develex.baseapp.MainViewModel
 import com.example.compose.AppTheme
 
 @Composable
-fun HomeScreen(navController: NavController) {
+fun HomeScreen(navController: NavController, vm: MainViewModel) {
             Surface(
                 modifier = Modifier.fillMaxSize(),
                 color = MaterialTheme.colorScheme.background
