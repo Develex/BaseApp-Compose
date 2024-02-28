@@ -66,7 +66,9 @@ fun SettingsScreen(navController: NavController, vm: MainViewModel) {
                 subtitle = { Text(text = "Gebruik de systeem voorkeuren") },
                 onCheckedChange = { newValue ->
                     run {
+//                        set correct values for auto mode and switch manual dark mode aff
                         vm.setThemeAutoUserSetting(newValue)
+                        darkModeState.reset()
                         coroutineScope.launch {
                             dataStoreManager.saveToDataStore(Settings(autoMode = newValue))
                         }
