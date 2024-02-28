@@ -1,5 +1,6 @@
 package com.develex.baseapp.screens
 
+import android.util.Log
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,6 +17,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -27,6 +29,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.develex.baseapp.DarkTheme
 import com.develex.baseapp.LocalTheme
+import com.develex.baseapp.MainActivity
 import com.develex.baseapp.MainViewModel
 import com.develex.baseapp.R
 import com.example.compose.AppTheme
@@ -35,7 +38,6 @@ import com.example.compose.AppTheme
 fun SettingsScreen(navController: NavController) {
 
     val vm: MainViewModel = viewModel()
-
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -55,11 +57,11 @@ fun SettingsScreen(navController: NavController) {
                     .padding(horizontal = 15.dp, vertical = 10.dp)
                     .clip(MaterialTheme.shapes.large)
             ) {
-                Text(
-                    "Settings Screen",
-                    style = MaterialTheme.typography.titleLarge,
-                    modifier = Modifier.padding(vertical = 20.dp)
-                )
+                Button(onClick = {
+
+                }) {
+                    Text(text = "Night Mode")
+                }
             }
         }
     }
