@@ -1,5 +1,6 @@
 package com.develex.baseapp.navigation
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
@@ -23,43 +24,46 @@ import com.develex.baseapp.MainViewModel
 import com.develex.baseapp.screens.HomeScreen
 import com.develex.baseapp.screens.Page2Screen
 import com.develex.baseapp.screens.SettingsScreen
+
 // important to pass the instance of the ViewModel to the next composable. otherwise it creates a new instance. :(
+@SuppressLint("AutoboxingStateCreation")
 @Composable
 fun BottomNavigationBar(vm: MainViewModel) {
     var navigationSelectedItem by remember {
-        mutableIntStateOf(1)
+        mutableStateOf(1)
     }
 
     val navController = rememberNavController()
 
-    Scaffold (
+    Scaffold(
         modifier = Modifier.fillMaxSize(),
-        bottomBar =  {
+        bottomBar = {
             NavigationBar {
-                BottomNavigationItem().bottomNavigationItems().forEachIndexed{index, navigationItem  ->
-                    NavigationBarItem(
-                        selected = index == navigationSelectedItem,
-                        label = {
-                            Text(navigationItem.label)
-                        },
-                        icon = {
-                            Icon(
-                                navigationItem.icon,
-                                contentDescription = navigationItem.label
-                            )
-                        },
-                        onClick = {
-                            navigationSelectedItem = index
-                            navController.navigate(navigationItem.route) {
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
+                BottomNavigationItem().bottomNavigationItems()
+                    .forEachIndexed { index, navigationItem ->
+                        NavigationBarItem(
+                            selected = index == navigationSelectedItem,
+                            label = {
+                                Text(navigationItem.label)
+                            },
+                            icon = {
+                                Icon(
+                                    navigationItem.icon,
+                                    contentDescription = navigationItem.label
+                                )
+                            },
+                            onClick = {
+                                navigationSelectedItem = index
+                                navController.navigate(navigationItem.route) {
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
                                 }
-                                launchSingleTop = true
-                                restoreState = true
                             }
-                        }
-                    )
-                }
+                        )
+                    }
 
             }
         }
@@ -67,7 +71,8 @@ fun BottomNavigationBar(vm: MainViewModel) {
         NavHost(
             navController = navController,
             startDestination = Screens.Home.route,
-            modifier = Modifier.padding(paddingValues = paddingValues)) {
+            modifier = Modifier.padding(paddingValues = paddingValues)
+        ) {
             composable(Screens.Page2.route) {
                 Page2Screen(navController, vm)
             }
